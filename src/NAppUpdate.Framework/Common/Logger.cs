@@ -37,6 +37,8 @@ namespace NAppUpdate.Framework.Common
 			}
 		}
 
+        public string LoggingDirectory { get; set; }
+
 		public List<LogItem> LogItems { get; private set; }
 
 		public Logger()
@@ -91,7 +93,7 @@ namespace NAppUpdate.Framework.Common
 		{
 			if (string.IsNullOrEmpty(filePath))
 			{
-				var workingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+				var workingDir = LoggingDirectory ?? Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 				filePath = Path.Combine(workingDir ?? string.Empty, @"NauUpdate.log");
 			}
 
