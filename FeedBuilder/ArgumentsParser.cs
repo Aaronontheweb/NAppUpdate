@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
+
 
 namespace FeedBuilder
 {
@@ -17,7 +18,7 @@ namespace FeedBuilder
 		public ArgumentsParser(IEnumerable<string> args)
 		{
 			foreach (string thisArg in args) {
-				if (thisArg.ToLower() == Application.ExecutablePath.ToLower() || thisArg.ToLower().Contains(".vshost.exe")) continue;
+				if (thisArg.ToLower() == Assembly.GetExecutingAssembly().Location || thisArg.ToLower().Contains(".vshost.exe")) continue;
 
 				string arg = CleanArg(thisArg);
 				if (arg == "build") {
